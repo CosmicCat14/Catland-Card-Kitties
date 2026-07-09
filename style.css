@@ -85,10 +85,12 @@ body{
 #player1, #player2{
     background-color: white;
     button{
-        animation: pulse 1s infinite;
+        animation: ease-in-out pulse 1s infinite;
+        background-color:blue;
     }
     button:disabled{
         color: white;
+        animation:none;
     }
 }
 #player1{
@@ -97,7 +99,19 @@ body{
 #player2{
     float:right;
 }
-
+#barP1,#barP2{
+    height:20px;
+    background-color:gray;
+    border-radius:10px;
+    overflow-x:hidden;
+    .marker{
+        width:10px;
+        background-color:black;
+        z-index:10000;
+        height:20px;
+        position:relative;
+    }
+}
 /* ******Dark Mode CSS****** */
 @media (prefers-color-scheme: dark) {
 
