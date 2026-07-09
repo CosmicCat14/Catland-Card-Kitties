@@ -1,0 +1,81 @@
+body{
+    background-image: url(Cats-arriving.jpeg);
+    animation: ease 10s normal bgchange infinite;
+    background-size: cover;
+}
+@keyframes bgchange{
+    0%, 100%{
+        background-image: url(Cats-arriving.jpeg);
+    }
+    33%{
+        background-image: url(Leading-Platform.jpeg);
+    }
+    50%{
+        background-image: url(hotels.svg);
+    }
+    66%{
+        background-image: url(Leading-Platform.jpeg);
+    }
+}
+@keyframes darkmodebg{
+    0%, 100%{
+        background-image: url(Hotel-night.jpeg);
+    }
+    50%{
+        background-image: url(IMG_7103.jpeg);
+    }
+}
+#game-name{
+    h1{
+        font-family: fantasy;
+    }
+    h2{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+}
+#bar{
+    background-color: gray;
+    height: 20px;
+    width:70%;
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+    unicode-bidi: isolate;
+}
+#bar #play1{
+    border-radius: 10px;
+    
+}
+#player1, #player2{
+    background-color: white;
+    button{
+        border:none;
+        background:none;
+    }
+    button:disabled{
+        color: white;
+    }
+}
+#player1{
+    float: left;
+}
+#player2{
+    float:right;
+}
+
+/* ******Dark Mode CSS****** */
+@media (prefers-color-scheme: dark) {
+
+    body{
+        color:white;
+        background-image:url(Hotel-night.jpeg);
+        animation: ease 10s normal darkmodebg infinite;
+    }
+    #player1, #player2{
+        background-color: black;
+        button:disabled{
+        color: black;
+    }
+
+    }
+}
