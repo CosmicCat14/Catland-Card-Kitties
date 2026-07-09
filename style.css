@@ -32,6 +32,18 @@ body{
         background-image: url(IMG_7103.jpeg);
     }
 }
+@keyframes pulse{
+    0%,100%{
+        scale: 1;
+        background-color: green;
+        color:white;
+    }
+    50%{
+        scale: 1.5;
+        background-color: #800080;
+        color:black;
+    }
+}
 #game-name{
     h1{
         font-family: cursive;
@@ -73,8 +85,7 @@ body{
 #player1, #player2{
     background-color: white;
     button{
-        border:none;
-        background:none;
+        animation: pulse 1s infinite;
     }
     button:disabled{
         color: white;
