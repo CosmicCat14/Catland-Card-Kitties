@@ -3,6 +3,13 @@ body{
     animation: ease 10s normal bgchange infinite;
     background-size: cover;
 }
+*{
+    transition: ease 2s;
+}
+@font-face {
+    font-family: "fancyfont";
+    src: url(font01.woff);
+}
 @keyframes bgchange{
     0%, 100%{
         background-image: url(Cats-arriving.jpeg);
@@ -27,10 +34,10 @@ body{
 }
 #game-name{
     h1{
-        font-family: fantasy;
+        font-family: cursive;
     }
     h2{
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: fancyfont, Georgia, 'Times New Roman', Times, serif;
     }
 }
 #bar{
@@ -38,12 +45,29 @@ body{
     height: 20px;
     width:70%;
     border-radius: 10px;
-    display: block;
+    display: flex;
     text-align: center;
     unicode-bidi: isolate;
+    @starting-style{
+        width:0;
+    }
 }
 #bar #play1{
     border-radius: 10px;
+    display:block;
+    width:0%;
+    background-color: yellow;
+    z-index: 1000;
+    height: 20px;
+    
+}
+#bar #play2{
+    border-radius: 10px;
+    display:block;
+    width:0%;
+    background-color: blue;
+    z-index: 1000;
+    height: 20px;
     
 }
 #player1, #player2{
