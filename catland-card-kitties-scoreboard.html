@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catland Scoreboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center id="game-name">
+        <h1>Catland</h1>
+        <h2>Card Kitties</h2>
+        <h2>Scoreboard</h2>
+    </center>
+    <div id="player1">
+        <h3>Player 1</h3>
+        <h3>Rounds Won</h3>
+        <h1><button onclick="players[0].won--" id="wonp1-">-</button><span id="wonP1">0</span><button onclick="players[0].won++" id="wonp1+">+</button></h1>
+        <h3>Bonus/Penalty Points</h3>
+        <h1><button onclick="players[0].bORp--">-</button><span id="b/pP1">0</span><button onclick="players[0].bORp++">+</button></h1>
+        <div id="barP1"><div class="marker"></div></div>
+    </div>
+    <div id="player2">
+        <h3>Player 2</h3>
+        <h3>Rounds Won</h3>
+        <h1><button onclick="players[1].won--" id="wonp2-">-</button><span id="wonP2">0</span><button onclick="players[1].won++" id="wonp2+">+</button></h1>
+        <h3>Bonus/Penalty Points</h3>
+        <h1><button onclick="players[1].bORp--">-</button><span id="b/pP2">0</span><button onclick="players[1].bORp++">+</button></h1>
+        <div id="barP2"><div class="marker"></div></div>
+    </div>
+    <center>
+        <br>
+    <h3>Visual Representation</h3>
+    <div id="bar">
+        <span id="play1"></span>
+        <span id="play2"></span>
+    </div>
+    <br>
+    <h3>Power Cards Played</h3>
+    <div id="power">None</div>
+    <button onclick="getEl('powerOptions').open = true;">Update</button>
+    <dialog id="powerOptions">
+        <h3>Update Powers</h3>
+        <div id="addhere"></div>
+        <button onclick="currentPowers = [];">Clear Powers</button>
+        <button onclick="getEl('powerOptions').open = false;">Done</button>
+    </dialog>
+    </center>
+    <script>
+        var players = [
+            {
+                /**
+                 * @typedef Player an object representing a person playing the game
+                 * @property {Number} won The number of rounds the player has won
+                 * @property {Number} bORp Bonus or Penalty points from the previous round
+                 */
+                won:0,
+                bORp:0
+            },
+            {
+                won:0,
+                bORp:0
+            }
+        ];
+        var powerOptions = [
+            "Swapping Cat",
+            "Hana for P1",
+            "Hana for P2",
+            "Wizard Cat"
+        ]
+        powerOptions.forEach(element => {
+                    let div = document.createElement('div');
+                    div.innerHTML = `<button onclick="currentPowers.push('${element}')">Add</button> ${element}`;
+                    getEl('addhere').appendChild(div);
+                });
+        var currentPowers = [];
+        function getEl(id="") {
+            return document.getElementById(id);
+        }
+        // Updater
+        setInterval(() => {
+            getEl("wonp1-").disabled = false;
+            getEl("wonp1+").disabled = false;
+            getEl("wonp2-").disabled = false;
+            getEl("wonp2+").disabled = false;
+            if (players[0].won <= 0){
+                players[0].won = 0;
+                getEl("wonp1-").disabled = true;
+            }else if (players[0].won >= 9){
+                players[0].won = 9;
+                getEl("wonp1+").disabled = true;
+            }
+            if (players[1].won <= 0){
+                players[1].won = 0;
+                getEl("wonp2-").disabled = true;
+            }else if (players[1].won >= 9){
+                players[1].won = 9;
+                getEl("wonp2+").disabled = true;
+            }
+            getEl('wonP1').innerHTML = players[0].won;
+            getEl('wonP2').innerHTML = players[1].won;
+            getEl('b/pP1').innerHTML = players[0].bORp;
+            getEl('b/pP2').innerHTML = players[1].bORp;
+            getEl('play1').style.width = `${ (players[0].won / 9) * 100}%`;
+            getEl('play2').style.width = `${ (players[1].won / 9) * 100}%`;
+            getEl('power').innerHTML = (currentPowers.length == 0)? "None" : currentPowers.join("<br>");
+            getEl('barP1').children[0].style.left = `${10 * (players[0].bORp + 4.75)}%`;
+            getEl('barP2').children[0].style.left = `${10 * (players[1].bORp + 4.75)}%`;
+        }, 100);
+    </script>
+</body>
+</html>
