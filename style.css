@@ -10,6 +10,10 @@ body{
     font-family: "fancyfont";
     src: url(font01.woff);
 }
+center,.center{
+  text-align: center;
+}
+
 @keyframes bgchange{
     0%, 100%{
         background-image: url(Cats-arriving.jpeg);
@@ -82,15 +86,39 @@ body{
     height: 20px;
     
 }
+button{
+    background-color:blue;
+    color: white;
+    transition:ease 0.5s;
+}
+button:hover{
+    scale:1.5;
+}
+button:disabled{
+    opacity:0;
+    scale:2;
+}
+#pwrupdate{
+    opacity:1;
+    visibility:visible;
+}
+dialog[open]+#pwrupdate{
+    opacity:0;
+    visibility:hidden;
+}
+dialog:not(:open){
+    opacity:0;
+    display:block;
+    visibility:visible;
+}
+dialog:open{
+    opacity:1;
+}
 #player1, #player2{
     background-color: white;
-    button{
+    button:enabled{
         animation: ease-in-out pulse 1s infinite;
         background-color:blue;
-    }
-    button:disabled{
-        color: white;
-        animation:none;
     }
 }
 #player1{
@@ -127,4 +155,7 @@ body{
     }
 
     }
+}
+@media (prefers-reduced-motion: reduce){
+    *{animation: none;}
 }

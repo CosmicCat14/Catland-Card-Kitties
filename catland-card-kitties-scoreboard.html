@@ -28,7 +28,7 @@
         <h1><button onclick="players[1].bORp--">-</button><span id="b/pP2">0</span><button onclick="players[1].bORp++">+</button></h1>
         <div id="barP2"><div class="marker"></div></div>
     </div>
-    <center>
+    <div class="center">
         <br>
     <h3>Visual Representation</h3>
     <div id="bar">
@@ -38,14 +38,14 @@
     <br>
     <h3>Power Cards Played</h3>
     <div id="power">None</div>
-    <button onclick="getEl('powerOptions').open = true;">Update</button>
     <dialog id="powerOptions">
         <h3>Update Powers</h3>
         <div id="addhere"></div>
         <button onclick="currentPowers = [];">Clear Powers</button>
         <button onclick="getEl('powerOptions').open = false;">Done</button>
     </dialog>
-    </center>
+    <button onclick="getEl('powerOptions').open = true;" id=pwrupdate>Update</button>
+    </div>
     <script>
         var players = [
             {
