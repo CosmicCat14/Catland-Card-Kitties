@@ -1,0 +1,7 @@
+{
+    "name":"Catland Card Kitties Scoreboard",
+    "short_name": "Cat Game #2",
+    "start_url":"/",
+    "display":"standalone"
+
+}
