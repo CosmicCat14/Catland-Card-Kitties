@@ -4,7 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catland Scoreboard</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+    background-image: url(Cats-arriving.jpeg);
+    animation: ease 10s normal bgchange infinite;
+    background-size: cover;
+}
+*{
+    transition: ease 2s;
+}
+@font-face {
+    font-family: "fancyfont";
+    src: url(font01.woff);
+}
+center,.center{
+  text-align: center;
+}
+
+@keyframes bgchange{
+    0%, 100%{
+        background-image: url(Cats-arriving.jpeg);
+    }
+    33%{
+        background-image: url(Leading-Platform.jpeg);
+    }
+    50%{
+        background-image: url(hotels.svg);
+    }
+    66%{
+        background-image: url(Leading-Platform.jpeg);
+    }
+}
+@keyframes darkmodebg{
+    0%, 100%{
+        background-image: url(Hotel-night.jpeg);
+    }
+    50%{
+        background-image: url(IMG_7103.jpeg);
+    }
+}
+@keyframes pulse{
+    0%,100%{
+        scale: 1;
+        background-color: green;
+        color:white;
+    }
+    50%{
+        scale: 1.5;
+        background-color: #800080;
+        color:black;
+    }
+}
+#game-name{
+    h1{
+        font-family: cursive;
+    }
+    h2{
+        font-family: fancyfont, Georgia, 'Times New Roman', Times, serif;
+    }
+}
+#bar{
+    background-color: gray;
+    height: 20px;
+    width:70%;
+    border-radius: 10px;
+    display: flex;
+    text-align: center;
+    unicode-bidi: isolate;
+    @starting-style{
+        width:0;
+    }
+}
+#bar #play1{
+    border-radius: 10px;
+    display:block;
+    width:0%;
+    background-color: yellow;
+    z-index: 1000;
+    height: 20px;
+    
+}
+#bar #play2{
+    border-radius: 10px;
+    display:block;
+    width:0%;
+    background-color: blue;
+    z-index: 1000;
+    height: 20px;
+    
+}
+button{
+    background-color:blue;
+    color: white;
+    transition:ease 0.5s;
+}
+button:hover{
+    scale:1.5;
+}
+button:disabled{
+    opacity:0;
+    scale:2;
+}
+#pwrupdate{
+    opacity:1;
+    visibility:visible;
+}
+dialog[open]+#pwrupdate{
+    opacity:0;
+    visibility:hidden;
+}
+dialog{
+    transition:ease-out 0.5s;
+}
+dialog:not(open){
+    opacity:0;
+    display:block;
+    position:absolute;
+    top:0;
+}
+dialog[open]{
+    opacity:1;
+}
+#player1, #player2{
+    background-color: white;
+    button:enabled{
+        background-color:blue;
+        animation: ease-in-out pulse 1s infinite;
+    }
+    button:disabled{
+        animation:none;
+    }
+}
+#player1{
+    float: left;
+}
+#player2{
+    float:right;
+}
+#barP1,#barP2{
+    height:20px;
+    background-color:gray;
+    border-radius:10px;
+    overflow-x:hidden;
+    .marker{
+        width:10px;
+        background-color:black;
+        z-index:10000;
+        height:20px;
+        position:relative;
+    }
+}
+/* ******Dark Mode CSS****** */
+@media (prefers-color-scheme: dark) {
+
+    body{
+        color:white;
+        background-image:url(Hotel-night.jpeg);
+        animation: ease 10s normal darkmodebg infinite;
+    }
+    #player1, #player2{
+        background-color: black;
+        button:disabled{
+        color: black;
+    }
+
+    }
+}
+    </style>
 </head>
 <body>
     <center id="game-name">
@@ -28,7 +194,7 @@
         <h1><button onclick="players[1].bORp--">-</button><span id="b/pP2">0</span><button onclick="players[1].bORp++">+</button></h1>
         <div id="barP2"><div class="marker"></div></div>
     </div>
-    <div class="center">
+    <center>
         <br>
     <h3>Visual Representation</h3>
     <div id="bar">
@@ -45,7 +211,7 @@
         <button onclick="getEl('powerOptions').open = false;">Done</button>
     </dialog>
     <button onclick="getEl('powerOptions').open = true;" id=pwrupdate>Update</button>
-    </div>
+    </center>
     <script>
         var players = [
             {
@@ -107,14 +273,15 @@
             getEl('barP1').children[0].style.left = `${10 * (players[0].bORp + 4.75)}%`;
             getEl('barP2').children[0].style.left = `${10 * (players[1].bORp + 4.75)}%`;
         }, 100);
-        /*********ADD SERVICE WORKER********/
+    </script>
+    <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js')
                 .then(reg => console.log('Service Worker registered'))
                 .catch(err => console.log('Service Worker registration failed', err));
         });
-    }  
-    </script>
+    }
+</script>
 </body>
 </html>
