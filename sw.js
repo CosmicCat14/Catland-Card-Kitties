@@ -1,5 +1,5 @@
 const CACHE_NAME = 'offline';
-const OFFLINE_PAGE = 'index.html';
+const OFFLINE_PAGE = '/Catland-Card-Kitties/index.html';
 
 // Install: Cache the offline page
 self.addEventListener('install', (event) => {
